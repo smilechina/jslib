@@ -24,6 +24,7 @@ ChangeTab.prototype.init = function() {
     var that = this;
     var len = that.options.tabIds.length;
     for (var i = 0; i < len; i++) {     
+        if (!that.options.tabIds[i]) {continue;};//如果没有要绑定事件的id，则跳过
         if(window.addEventListener) {
             (function (num) {
                 $(that.options.tabIds[i]).addEventListener(that.options.type, function() {
@@ -46,6 +47,7 @@ ChangeTab.prototype.tabShow = function(num) {
         return;
     };
     for (var key in tabIdArr) {
+        if (!$(conIdArr[key]) || !$(tabIdArr[key])) {continue;};//如果没有对应的内容id则跳过对这个的操作
         if (key == num) {
             $(tabIdArr[key]).className += " " + this.options.hit;
             $(conIdArr[key]).style.display = "";
